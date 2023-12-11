@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+
+
+html, body {
+      height: 100%;
+      margin: 0;
+      background: #22222A;
+    }
+
+  .wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+  .header, .footer {
+      background: #333;
+        padding: 10px 0;
+        color: #fff;
+      width: 100%;
+      font-size: 16px;
+    }
+
+  .content {
+      flex: 1;
+      overflow: auto;
+    }
+
+
+
+
+
+
+
+
+
+
+      .bg-img {
+
+    /*background-image: url("roompage.jpg");*/
+
+    min-height: 400px;
+
+    background-color: background: #22222A;;
+
+  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+
+
+.btn {
+  
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  width: 100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.green{
+  background-color: #04AA6D;
+}
+
+.black{
+  background-color: #555555;
+}
+
+
+
+.btn:hover {
+  opacity: 1;
+}
+
+
+
+ 
+.container3 {
+    width: 1100px;
+
+
+
+
+    margin-right: auto;
+    margin-left: auto;
+    /*padding: 30px;*/
+    /*justify-content: "space-evenly;"*/
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border:50px;
+    border-style: solid;
+    border-color: background: #22222A;;
+
+    background-image: url("static/images/m1.jpg");
+    /*background-color: white;*/
+}
+
+
+
+form {
+    display: inline-block;
+}
+
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+label {
+    color: #66ccff;
+}
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div id="mySidebar" class="sidebar">
+   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="/member">Home</a>
+  <a href="/member_order">Order</a>
+  <a href="/member_room">Room</a>
+  <a href="/member_opinion">Contact us</a>
+  <a href="/member_spa">Spa</a>
+  <a href="/member_meal">Meal</a>
+  <a href="/member_account">Account</a>
+  <a href="/logout">Logout</a></div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button> 
+
+
+
+  <div class="bg-img">
+
+
+
+
+          <div class="container3">
+            {% from "includes/_formhelpers.html" import render_field %}
+            <form method="POST" action="">
+              <div class="form-group">
+                {{render_field(form.r_type, class_="form-control")}}
+              </div>
+              <div class="form-group">
+                {{render_field(form.start_time, class_="form-control")}}
+              </div>
+              <div class="form-group">
+                {{render_field(form.end_time, class_="form-control")}}
+              </div>
+              <p><input type="submit" class="btn btn-primary" value="Book"></p>
+            </form>
+          </div>
+
+        </div> 
+
+
+
+
+
+
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+
+<script>
+              var count = 1;
+              var countEl = document.getElementById("count");
+              function plus(){
+                count++;
+
+                if(count>5){
+                  count=5
+                }
+
+                countEl.value = count;
+              }
+              function minus(){
+                if (count > 1) {
+                  count--;
+                  countEl.value = count;
+                }  
+                }
+
+</script>
+
+
+
+   
+</body>
+</html> 

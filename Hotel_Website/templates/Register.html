@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>"Register Page"</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+
+ html, body {
+      height: 100%;
+      margin: 0;
+      background: #22222A;
+    }
+
+  .wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+  .header, .footer {
+      background: #333;
+        padding: 10px 0;
+        color: #fff;
+      width: 100%;
+      font-size: 16px;
+    }
+
+  .content2 {
+      flex: 1;
+      overflow: auto;
+    }
+
+  nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+
+
+  .container2{
+        width: 80%;
+        margin: 0 auto;
+        justify-content: "space-evenly;"
+
+      }
+
+
+
+
+.dropbtn {
+  background-color: #333;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
+
+
+/* Full-width input fields */
+input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: white;
+}
+
+/*input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}*/
+
+
+/*input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}*/
+
+
+
+
+
+</style>
+</head>
+<body>
+
+
+
+
+<div class="wrapper">
+
+    <div class="header">
+      <div class="container2">
+             <nav>
+                <a href="/">Home</a>
+                <a href="/room">Room</a>
+                <a href="/login">Login</a>
+                <div class="dropdown">
+                  <button class="dropbtn">Services</button>
+                    <div class="dropdown-content">
+                      <a href="/spa">Spa</a>
+                      <a href="/meal">Meal</a>
+                    </div>
+                </div>
+
+
+            </nav>
+      </div>
+    </div>
+
+
+
+
+<div class="content2">
+      <div style="height:500px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <h2 style="color:Tomato;">Register</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+    <div class="form-group">
+      {{render_field(form.name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.email, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.phone_num, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.payment, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.confirm, class_="form-control")}}
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+  </form>
+
+
+<!--
+  <h2 style="color:Tomato;">Register</h2>
+
+  <form action="/action_page.php">
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    </div>
+  </div>
+
+
+
+   <div class="row">
+    <div class="col-25">
+      <label for="lname">Last Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    </div>
+  </div> 
+
+
+
+   <div class="row">
+    <div class="col-25">
+      <label for="country">Country</label>
+    </div>
+    <div class="col-75">
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </select>
+    </div>
+  </div> 
+
+
+
+  <div class="row">
+    <div class="col-25">
+      <label for="email">Email</label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="Enter Email" name="email" required>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-25">
+      <label for="psw">Password</label>
+    </div>
+    <div class="col-75">
+      <input type="password" placeholder="Enter Password" name="psw" required>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-25">
+      <label for="phone">Phone number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="Enter Phone" name="phone">
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="payment">Payment</label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="Enter Payment" name="payment" required>
+    </div>
+  </div>
+
+
+
+
+
+   <div class="row">
+    <div class="col-25">
+      <label for="subject">Subject</label>
+    </div>
+    <div class="col-75">
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+  </div> 
+
+
+
+  <div class="row">
+    <input type="submit" value="Submit" onclick="location.href='member_home.html'">
+  </div>
+  </form>
+-->
+
+
+</div>
+
+
+
+
+
+
+   </div>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

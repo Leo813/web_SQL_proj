@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>"Home Page"</title> 
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; 
+  background: #22222A;
+  font-family: 'Fira Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  font-size: .88rem;
+  color: #bdbdd5;
+}
+
+.content-width {
+  width: 86%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.slideshow-items {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.item {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.item-image-container {
+  position: relative;
+  width: 42%;
+}
+
+.item-image-container::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 101%;
+  height: 101%;
+  background: #22222A;
+  opacity: 0;
+  z-index: 1;
+}
+
+.item-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  display: block;
+  /* transition: property name | duration | timing-function | delay  */
+  transition: opacity .3s ease-out .45s;
+}
+
+.item.active .item-image {
+  opacity: 1;
+}
+
+.item.active .item-image-container::before {
+  opacity: .3;
+}
+
+.item-description {
+  position: absolute;
+  top: 182px;
+  right: 0;
+  width: 50%;
+  padding-right: 4%;
+  line-height: 1.8;
+}
+
+/* Staggered Vertical Items ------------------------------------------------------*/
+.item-header {
+  position: absolute;
+  top: 150px;
+  left: -1.8%;
+  z-index: 100;
+}
+
+.item-header .vertical-part {
+  margin: 0 -4px;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: auto;
+  font-size: 7vw;
+  color: #fff;
+}
+
+.vertical-part {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.vertical-part b {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.item-header .vertical-part b {
+  transition: .5s;
+}
+
+.item-description .vertical-part b {
+  transition: .21s;
+}
+
+.item.active .item-header .vertical-part b {
+  transform: translateY(0);
+}
+
+.item.active .item-description .vertical-part b {
+  transform: translateY(0);
+}
+
+/* Controls ----------------------------------------------------------------------*/
+.controls {
+  position: relative;
+  text-align: right;
+  z-index: 1000;
+}
+
+.controls ul {
+  list-style: none;
+}
+
+.controls ul li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 3px;
+  background:#bdbdd5;;
+  cursor: pointer;
+}
+
+.controls ul li.active {
+  background:#6a6a77;;
+}
+
+
+.wrapper {
+  		height: 100%;
+  		display: flex;
+  		flex-direction: column;
+		}
+
+	.header, .footer {
+  		background: #333;
+      padding: 10px 0;
+      color: #fff;
+  		width: 100%;
+      font-size: 16px;
+		}
+
+	.content {
+  		flex: 1;
+  		overflow: auto;
+  		/*background: pink;*/
+		}
+
+	nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+
+.container{
+        width: 80%;
+        margin: 0 auto;
+        justify-content: "space-evenly;"}
+
+
+
+.card {
+    background-color: #22222A;
+    color: #fff;
+}
+
+
+h1 {text-align: center;}
+
+
+
+/* The Modal (background) */
+.modal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active4, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active4:after {
+  content: "\2212";
+}
+
+.content4 {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+.dropbtn {
+  background-color: #333;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+
+<div class="wrapper">
+
+  	<div class="header">
+  		<div class="container">
+
+
+            <nav>
+                <a href="/">Home</a>
+                <a href="/room">Room</a>
+                <a href="/login">Login</a>
+                <div class="dropdown">
+                  <button class="dropbtn">Services</button>
+                    <div class="dropdown-content">
+                      <a href="/spa">Spa</a>
+                      <a href="/meal">Meal</a>
+                    </div>
+                </div>
+
+
+                
+
+            </nav>
+
+
+
+
+        
+      </div>
+  	</div>
+
+    <div class="content">
+    	<div style="height:950px;">
+
+
+
+
+
+
+<div class="content-width">
+  <div class="slideshow">
+    <!-- Slideshow Items -->
+    <div class="slideshow-items">
+      <div class="item">
+        <div class="item-image-container">
+          <img class="item-image" src="static/images/hotel.jpg"/>
+        </div>
+        <!-- Staggered Header Elements -->
+        <div class="item-header">
+          <span class="vertical-part"><b>R</b></span>
+          <span class="vertical-part"><b>o</b></span>
+          <span class="vertical-part"><b>o</b></span>
+          <span class="vertical-part"><b>m</b></span>
+        </div>
+        <!-- Staggered Description Elements -->
+        <div class="item-description">
+          <span class="vertical-part">
+            <b>來</b>
+          </span>
+          <span class="vertical-part">
+            <b>享</b>
+          </span>
+          <span class="vertical-part">
+            <b>受</b>
+          </span> 
+          <span class="vertical-part">
+            <b>一</b>
+          </span>
+          <span class="vertical-part">
+            <b>個</b>
+          </span> 
+          <span class="vertical-part">
+            <b>人</b>
+          </span>
+          <span class="vertical-part">
+            <b>的</b>
+          </span> 
+          <span class="vertical-part">
+            <b>旅</b>
+          </span>
+          <span class="vertical-part">
+            <b>行</b>
+          </span> 
+          <span class="vertical-part">
+            <b>吧</b>
+          </span>
+          <span class="vertical-part">
+            <b>!</b>
+          </span> 
+        </div>
+      </div>
+
+
+
+
+      <div class="item">
+        <div class="item-image-container">
+          <img class="item-image" src="static/images/food.jpg" />
+        </div>
+        <!-- Staggered Header Elements -->
+        <div class="item-header">
+          <span class="vertical-part"><b>D</b></span>
+          <span class="vertical-part"><b>i</b></span>
+          <span class="vertical-part"><b>n</b></span>
+          <span class="vertical-part"><b>i</b></span>
+          <span class="vertical-part"><b>n</b></span>
+          <span class="vertical-part"><b>g</b></span>
+        </div>
+        <!-- Staggered Description Elements -->
+        <div class="item-description">
+          <span class="vertical-part">
+            <b>最</b>
+          </span>
+          <span class="vertical-part">
+            <b>純</b>
+          </span>
+          <span class="vertical-part">
+            <b>粹</b>
+          </span>
+          <span class="vertical-part">
+            <b>的</b>
+          </span>
+          <span class="vertical-part">
+            <b>食</b>
+          </span>
+          <span class="vertical-part">
+            <b>材</b>
+          </span>
+          <span class="vertical-part">
+            <b>，</b>
+          </span>
+          <span class="vertical-part">
+            <b>挑</b>
+          </span>
+          <span class="vertical-part">
+            <b>動</b>
+          </span>
+          <span class="vertical-part">
+            <b>你</b>
+          </span>
+          <span class="vertical-part">
+            <b>的</b>
+          </span>
+          <span class="vertical-part">
+            <b>味</b>
+          </span>
+          <span class="vertical-part">
+            <b>蕾</b>
+          </span>
+          <span class="vertical-part">
+            <b>...</b>
+          </span>
+      
+        </div>
+      </div>
+
+
+
+
+      <div class="item">
+        <div class="item-image-container">
+          <img class="item-image" src="static/images/spa.jpg"/>
+        </div>
+        <!-- Staggered Header Elements -->
+        <div class="item-header">
+          <span class="vertical-part"><b>S</b></span>
+          <span class="vertical-part"><b>p</b></span>
+          <span class="vertical-part"><b>a</b></span>
+        </div>
+        <!-- Staggered Description Elements -->
+        <div class="item-description">
+          <span class="vertical-part">
+            <b>世</b>
+          </span>
+          <span class="vertical-part">
+            <b>界</b>
+          </span>
+          <span class="vertical-part">
+            <b>唯</b>
+          </span>
+          <span class="vertical-part">
+            <b>二</b>
+          </span>
+          <span class="vertical-part">
+            <b>的</b>
+          </span>
+          <span class="vertical-part">
+            <b>青</b>
+          </span>
+          <span class="vertical-part">
+            <b>礦</b>
+          </span>
+          <span class="vertical-part">
+            <b>石</b>
+          </span>
+          <span class="vertical-part">
+            <b>泉</b>
+          </span>
+          <span class="vertical-part">
+            <b>，</b>
+          </span>
+          <span class="vertical-part">
+            <b>給</b>
+          </span>
+          <span class="vertical-part">
+            <b>您</b>
+          </span>
+          <span class="vertical-part">
+            <b>至</b>
+          </span>
+          <span class="vertical-part">
+            <b>尊</b>
+          </span>
+          <span class="vertical-part">
+            <b>的</b>
+          </span>
+          <span class="vertical-part">
+            <b>享</b>
+          </span>
+          <span class="vertical-part">
+            <b>受</b>
+          </span>
+          <span class="vertical-part">
+            <b>...</b>
+          </span>
+          
+         
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="controls">
+      <ul>
+        <li class="control" data-index="0"></li>
+        <li class="control" data-index="1"></li>
+        <li class="control" data-index="2"></li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+<h1>Room</h1>
+<hr>
+
+<div class="row col-12">
+
+  <div class="card col-6">
+      <div class="row no-gutters">
+          <div class="col-sm-5">
+          <img class="card-img" src="static/images/d1.jpg" alt="Suresh Dasari Card">
+          </div>
+
+          <div class="col-sm-7">
+              <div class="card-body">
+                  <h5 class="card-title">Fairmont Gold Room</h5>
+                  <p class="card-text">
+                  Overlooking various views of the Chateau grounds, these stunning guest rooms provide the luxury of Fairmont Gold with exclusive lounge access featuring daily breakfast and evening canapies.
+                  </p>
+ 
+
+                  <button href="#myModal1" class="modal-button btn btn-primary">See details</button>
+                  <div id="myModal1" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <span class="close">x</span>
+                      <img src="static/images/d1.jpg" alt="Italian Trulli" width="300" height="200">
+                      <br>
+                        <button class="collapsible">Space</button>
+                          <div class="content4">
+                            <p style="color:black;">5 people/room</p>
+                          </div>
+
+                        <button class="collapsible">Service</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              pool, massage
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$5000/person </p>
+                          </div>
+
+                    </div>
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+        <div class="col-sm-5">
+        <img class="card-img" src="static/images/d2.jpg" alt="Suresh Dasari Card">
+        </div>
+
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">Samurai Room</h5>
+            <p class="card-text">The room provides you with the most traditional japanese lifestyle experience.</p>
+
+
+            <button href="#myModal2" class="modal-button btn btn-primary">See details</button>
+            <div id="myModal2" class="modal">
+                    <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">x</span>
+                    <img src="static/images/d2.jpg" alt="Italian Trulli" width="300" height="200">
+                    <br>
+                        <button class="collapsible">Space</button>
+                          <div class="content4">
+                            <p style="color:black;">4 people/room</p>
+                          </div>
+
+                        <button class="collapsible">Service</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              pool, massage, drama show
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$10000/person </p>
+                          </div>
+
+                </div>
+
+            </div>
+
+
+
+            
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row col-12">
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+        <div class="col-sm-5">
+            <img class="card-img" src="static/images/d3.jpg" alt="Suresh Dasari Card">
+        </div>
+
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">Otaku Single Room</h5>
+            <p class="card-text">If you are alone, you can just book this room. So sad :/</p>
+            
+            <button href="#myModal3" class="modal-button btn btn-primary">See details</button>
+              <div id="myModal3" class="modal">
+
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <img src="static/images/d3.jpg" alt="Italian Trulli" width="300" height="200">
+                    <br>
+                        <button class="collapsible">Space</button>
+                          <div class="content4">
+                            <p style="color:black;">1 person/room</p>
+                          </div>
+
+                        <button class="collapsible">Service</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              no service :/
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$800/person </p>
+                          </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<br>
+<br>
+
+<h1>Food</h1>
+<hr>
+<div class="row col-12">
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+        <div class="col-sm-5">
+          <img class="card-img" src="static/images/food1.jpg" alt="Suresh Dasari Card">
+        </div>
+
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">Western Style</h5>
+            <p class="card-text">
+            Steak, Spaghetti, Pizza...
+            </p>
+            
+            <button href="#myModal4" class="modal-button btn btn-primary">See details</button>
+              <div id="myModal4" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <img src="static/images/food1.jpg" alt="Italian Trulli" width="300" height="200">
+                  <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              11:00~13:00<br>
+                              17:00~19:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$500/person </p>
+                          </div>
+
+                </div>
+
+              </div>
+
+
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+      <div class="col-sm-5">
+        <img class="card-img" src="static/images/food2.jpg" alt="Suresh Dasari Card">
+      </div>
+      
+      <div class="col-sm-7">
+        <div class="card-body">
+          <h5 class="card-title">Chinese Style</h5>
+          <p class="card-text">Fried Rice, Dim Sum, Soup Dumplings...</p>
+          
+
+          <button href="#myModal5" class="modal-button btn btn-primary">See details</button>
+            <div id="myModal5" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="static/images/food2.jpg" alt="Italian Trulli" width="300" height="200">
+                <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              11:00~13:00<br>
+                              17:00~19:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$400/person </p>
+                          </div>
+              </div>
+
+            </div>
+
+
+
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+</div>
+
+<br>
+
+<div class="row col-12">
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+      <div class="col-sm-5">
+        <img class="card-img" src="static/images/food3.jpg" alt="Suresh Dasari Card">
+      </div>
+
+      <div class="col-sm-7">
+        <div class="card-body">
+          <h5 class="card-title">Japanese Style</h5>
+          <p class="card-text">Sushi, Sashimi, Udon...</p>
+          
+
+          <button href="#myModal6" class="modal-button btn btn-primary">See details</button>
+            <div id="myModal6" class="modal">
+
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="static/images/food3.jpg" alt="Italian Trulli" width="300" height="200">
+                <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              11:00~13:00<br>
+                              17:00~19:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$700/person </p>
+                          </div>
+              </div>
+
+            </div>
+
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<br>
+<br>
+
+
+
+<h1>Spa</h1>
+<hr>
+<div class="row col-12">
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+        <div class="col-sm-5">
+          <img class="card-img" src="static/images/spa2.jpg" alt="Suresh Dasari Card">
+        </div>
+
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">Private Massage</h5>
+            <p class="card-text">
+            Need reservation.
+            </p>
+            
+            <button href="#myModal7" class="modal-button btn btn-primary">See details</button>
+              <div id="myModal7" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <img src="static/images/spa2.jpg" alt="Italian Trulli" width="300" height="200">
+                  <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              17:00~21:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$500/person </p>
+                          </div>
+
+                </div>
+              </div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+      <div class="col-sm-5">
+        <img class="card-img" src="static/images/spa1.jpg" alt="Suresh Dasari Card">
+      </div>
+      
+      <div class="col-sm-7">
+        <div class="card-body">
+          <h5 class="card-title">Luxury Massage</h5>
+          <p class="card-text">Do the massage with views from Mt. Fuji.</p>
+          
+          <button href="#myModal8" class="modal-button btn btn-primary">See details</button>
+            <div id="myModal8" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="static/images/spa1.jpg" alt="Italian Trulli" width="300" height="200">
+                 <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              17:00~21:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$200/person </p>                    
+                </p>
+              </div>
+
+            </div>
+
+
+
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+</div>
+
+<br>
+
+<div class="row col-12">
+  <div class="card col-6">
+    <div class="row no-gutters">
+
+      <div class="col-sm-5">
+        <img class="card-img" src="static/images/spa3.jpg" alt="Suresh Dasari Card">
+      </div>
+
+      <div class="col-sm-7">
+        <div class="card-body">
+          <h5 class="card-title">Korean Style Spa</h5>
+          <p class="card-text">Oba Ganum style..</p>
+          
+          <button href="#myModal9" class="modal-button btn btn-primary">See details</button>
+            <div id="myModal9" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="static/images/spa3.jpg" alt="Italian Trulli" width="300" height="200">
+                 <br>
+                        <button class="collapsible">Time</button>
+                          <div class="content4">
+                            <p style="color:black;">
+                              17:00~21:00
+
+                            </p>
+                          </div>
+                        <button class="collapsible">Price</button>
+                          <div class="content4">
+                            <p style="color:black;">$100/person </p>
+              </div>
+
+            </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+	// Master DOManipulator v2 ------------------------------------------------------------
+const items = document.querySelectorAll('.item'),
+  controls = document.querySelectorAll('.control'),
+  headerItems = document.querySelectorAll('.item-header'),
+  descriptionItems = document.querySelectorAll('.item-description'),
+  activeDelay = .76,
+  interval = 5000;
+
+let current = 0;
+
+const slider = {
+  init: () => {
+    controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+    controls[current].classList.add('active');
+    items[current].classList.add('active');
+  },
+  nextSlide: () => { // Increment current slide and add active class
+    slider.reset();
+    if (current === items.length - 1) current = -1; // Check if current slide is last in array
+    current++;
+    controls[current].classList.add('active');
+    items[current].classList.add('active');
+    slider.transitionDelay(headerItems);
+    slider.transitionDelay(descriptionItems);
+  },
+  clickedControl: (e) => { // Add active class to clicked control and corresponding slide
+    slider.reset();
+    clearInterval(intervalF);
+
+    const control = e.target,
+      dataIndex = Number(control.dataset.index);
+
+    control.classList.add('active');
+    items.forEach((item, index) => { 
+      if (index === dataIndex) { // Add active class to corresponding slide
+        item.classList.add('active');
+      }
+    })
+    current = dataIndex; // Update current slide
+    slider.transitionDelay(headerItems);
+    slider.transitionDelay(descriptionItems);
+    intervalF = setInterval(slider.nextSlide, interval); // Fire that bad boi back up
+  },
+  reset: () => { // Remove active classes
+    items.forEach(item => item.classList.remove('active'));
+    controls.forEach(control => control.classList.remove('active'));
+  },
+  transitionDelay: (items) => { // Set incrementing css transition-delay for .item-header & .item-description, .vertical-part, b elements
+    let seconds;
+    
+    items.forEach(item => {
+      const children = item.childNodes; // .vertical-part(s)
+      let count = 1,
+        delay;
+      
+      item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
+
+      children.forEach(child => { // iterate through .vertical-part(s) and style b element
+        if (child.classList) {
+          item.parentNode.classList.contains('active') ? delay = count * seconds + activeDelay : delay = count * seconds;
+          child.firstElementChild.style.transitionDelay = `${delay}s`; // b element
+          count++;
+        }
+      })
+    })
+  },
+}
+
+let intervalF = setInterval(slider.nextSlide, interval);
+slider.init();
+</script>
+
+
+
+
+
+
+
+
+<script>
+// Get the button that opens the modal
+var btn = document.querySelectorAll("button.modal-button");
+
+// All page modals
+var modals = document.querySelectorAll('.modal');
+
+// Get the <span> element that closes the modal
+var spans = document.getElementsByClassName("close");
+
+// When the user clicks the button, open the modal
+for (var i = 0; i < btn.length; i++) {
+ btn[i].onclick = function(e) {
+    e.preventDefault();
+    modal = document.querySelector(e.target.getAttribute("href"));
+    modal.style.display = "block";
+ }
+}
+
+// When the user clicks on <span> (x), close the modal
+for (var i = 0; i < spans.length; i++) {
+ spans[i].onclick = function() {
+    for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+    }
+ }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+     for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+     }
+    }
+}
+</script>
+
+
+
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active4");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+</body>
+</html> 

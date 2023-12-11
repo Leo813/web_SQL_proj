@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>"Spa Page"</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+
+  html, body {
+      height: 100%;
+      margin: 0;
+      background: #22222A;
+    }
+
+  .wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+  .header, .footer {
+      background: #333;
+        padding: 10px 0;
+        color: #fff;
+      width: 100%;
+      font-size: 16px;
+    }
+
+  .content {
+      flex: 1;
+      overflow: auto;
+    }
+
+  nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+
+
+  .container{
+        width: 80%;
+        margin: 0 auto;
+        justify-content: "space-evenly;"
+
+      }
+
+
+
+  *{
+  box-sizing: border-box;
+    }
+
+  .bg-img {
+
+    /*background-image: url("roompage.jpg");*/
+
+    min-height: 400px;
+
+    background-color: background: #22222A;;
+
+  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+
+
+.btn {
+  
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  width: 100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.green{
+  background-color: #04AA6D;
+}
+
+.black{
+  background-color: #555555;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+
+
+ 
+.container3 {
+    width: 1100px;
+
+
+
+
+    margin-right: auto;
+    margin-left: auto;
+    /*padding: 30px;*/
+    /*justify-content: "space-evenly;"*/
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border:40px;
+    border-style: solid;
+    border-color: background: #22222A;;
+
+    background-image: url("static/images/sp.jpg");
+    /*background-color: white;*/
+}
+
+
+
+
+
+
+
+form {
+    display: inline-block;
+}
+
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+label {
+    color: LightBlue;
+}
+
+
+
+
+
+
+
+
+.dropbtn {
+  background-color: #333;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+   
+<div class="wrapper">
+
+    <div class="header">
+      <div class="container">
+             <nav>
+                <a href="/">Home</a>
+                <a href="/room">Room</a>
+                <a href="/login">Login</a>
+                
+                <div class="dropdown">
+                  <button class="dropbtn">Services</button>
+                    <div class="dropdown-content">
+                      <a href="/spa">Spa</a>
+                      <a href="/meal">Meal</a>
+                    </div>
+                </div>
+
+
+                
+                
+
+            </nav>
+      </div>
+    </div>
+
+    <div class="content">
+      <div style="height:500px;">
+
+        <div class="bg-img">
+
+
+
+
+          <div class="container3">
+
+            <form> 
+              <label for="date1"><b>Date</b></label>
+              <input type="date" min="2021-01-01" max="2022-12-31" name="date1">
+
+              <label for="spatype"><b>Spatype</b></label>
+              <input type="text" list="spatype">
+                <datalist id="spatype">
+                  <option value="Private Massage">
+                  <option value="Luxury Massage">
+                  <option value="Korean Style Spa">  
+                </datalist>
+  
+              <label for="time1"><b>Time</b></label>
+              <input type="text" list="time1">
+                <datalist id="time1">
+                  <option value="17:00~19:00">
+                  <option value="19:00~21:00">
+                </datalist>
+
+
+            </form>
+            
+            <label for="travellers"><b>Person</b></label>
+            <input type="button" value="-" id="moins" onclick="minus()">
+            <input type="text" size="5" value="1" id="count">
+            <input type="button" value="+" id="plus" onclick="plus()">
+
+            
+            <div class="center">
+              <button type="submit" class="btn green" onclick="location.href='/login'">Reserve</button>
+            </div>
+          </div>
+
+
+
+        </div>    
+
+          
+
+
+        
+
+
+
+
+
+      </div>
+  </div>
+
+</div>
+
+
+
+ <script>
+              var count = 1;
+              var countEl = document.getElementById("count");
+              function plus(){
+                count++;
+
+                if(count>5){
+                  count=5
+                }
+
+                countEl.value = count;
+              }
+              function minus(){
+                if (count > 1) {
+                  count--;
+                  countEl.value = count;
+                }  
+                }
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--        <div class="row col-12">
+            <div class="card col-6">
+                <div class="row no-gutters">
+                    <div class="col-sm-5">
+                        <img class="card-img" src="d3.jpg" alt="Suresh Dasari Card">
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title">Suresh Dasari</h5>
+                            <p class="card-text">Suresh Dasari is a founder and technical lead developer in tutlane.</p>
+                            <a href="#" class="btn btn-primary">View Profile</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> -->
